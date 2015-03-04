@@ -1,0 +1,29 @@
+{
+  "name": "tibiacrawler",
+  "version": "0.0.1",
+  "description": "A tibia crawler module for Node. ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/TibiaJS/tibiacrawler"
+  },
+  "keywords": [
+    "Tibia",
+    "Crawler",
+    "TibiaCrawler",
+    "TibiaJS"
+  ],
+  "author": "Renato Ribeiro",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TibiaJS/tibiacrawler/issues"
+  },
+  "homepage": "https://github.com/TibiaJS/tibiacrawler",
+  "dependencies": {
+    "cheerio": "^0.18.0",
+    "request": "^2.53.0"
+  }
+}
