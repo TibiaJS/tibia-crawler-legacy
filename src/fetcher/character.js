@@ -17,7 +17,7 @@ function Character($){
 
   var getWrapper = function(key){
     return $('b:contains("' + key + '")').closest('table');
-  }
+  };
 
   getWrapper('Character Information')
   .find('tr:nth-child(n+2)')
@@ -37,8 +37,8 @@ function Character($){
     var value = {
       grade: $(this).find('td:nth-child(1) img').length,
       name: $(this).find('td:nth-child(2)').text().trim(),
-      secret: $(this).find('td:nth-child(2) img').length == 1 ? true : false
-    }
+      secret: $(this).find('td:nth-child(2) img').length === 1
+    };
     self.achievements.push(value);
   });
 
@@ -52,7 +52,7 @@ function Character($){
       by: $(this).find('td:nth-child(2)').text().match(/\D+/g)[1]
           .replace('by an').replace('by a', '').replace('by', '')
           .replace('.', '').replace(' and ',', ').trim().split(', ')
-    }
+    };
     self.deaths.push(value);
   });
 
@@ -74,8 +74,8 @@ function Character($){
     var value = {
       name: $(this).find('td:nth-child(1)').find('input[type=hidden]').val(),
       world: $(this).find('td:nth-child(2)').text(),
-      online: $(this).find('td:nth-child(3)').text() == 'online' ? 'online' : 'offline'
-    }
+      online: $(this).find('td:nth-child(3)').text() === 'online'
+    };
     self.characters.push(value);
   });
 

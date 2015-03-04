@@ -1,29 +1,36 @@
 {
-  "name": "tibiacrawler",
+  "name": "tibia-crawler",
   "version": "0.0.1",
-  "description": "A tibia crawler module for Node. ",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "http://github.com/TibiaJS/tibiacrawler"
-  },
-  "keywords": [
-    "Tibia",
-    "Crawler",
-    "TibiaCrawler",
-    "TibiaJS"
+  "description": "A tibia crawler module for Node.",
+  "homepage": "https://github.com/TibiaJS/tibia-crawler",
+  "repository": "TibiaJS/tibia-crawler",
+  "license": "MIT",
+  "files": [
+    "index.js"
   ],
-  "author": "Renato Ribeiro",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/TibiaJS/tibiacrawler/issues"
-  },
-  "homepage": "https://github.com/TibiaJS/tibiacrawler",
+  "keywords": [
+    "tibia-crawler",
+    "tibia",
+    "otserv",
+    "crawler",
+    "tibiajs",
+    "tibiacrawler"
+  ],
   "dependencies": {
     "cheerio": "^0.18.0",
     "request": "^2.53.0"
+  },
+  "devDependencies": {
+    "grunt-cli": "^0.1.13",
+    "grunt-contrib-jshint": "^0.11.0",
+    "grunt-contrib-nodeunit": "^0.4.1",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-mocha-cli": "^1.12.0",
+    "jshint-stylish": "^1.0.1",
+    "load-grunt-tasks": "^3.1.0",
+    "time-grunt": "^1.1.0"
+  },
+  "scripts": {
+    "test": "grunt"
   }
 }
