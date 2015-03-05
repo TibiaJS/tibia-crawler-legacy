@@ -56,15 +56,14 @@ function Character($) {
   getWrapper('Character Deaths')
   .find('tr:nth-child(n+2)')
   .each(function() {
-    var value = {
+    self.deaths.push({
       date: $(this).find('td:nth-child(1)').text()
             .replace(String.fromCharCode(160), ' ').replace('CET', '').trim(),
       level: parseInt($(this).find('td:nth-child(2)').text().match(/[0-9]+/g)[0]),
       by: $(this).find('td:nth-child(2)').text().match(/\D+/g)[1]
           .replace('by an').replace('by a', '').replace('by', '')
           .replace('.', '').replace(' and ',', ').trim().split(', ')
-    };
-    self.deaths.push(value);
+    });
   });
 
   getWrapper('Account Information')
@@ -79,12 +78,11 @@ function Character($) {
   getWrapper('Characters')
   .find('tr:nth-child(n+3)')
   .each(function() {
-    var value = {
+    self.characters.push({
       name: $(this).find('td:nth-child(1)').find('input[type=hidden]').val(),
       world: $(this).find('td:nth-child(2)').text(),
       online: $(this).find('td:nth-child(3)').text() === 'online'
-    };
-    self.characters.push(value);
+    });
   });
 
   return this;
