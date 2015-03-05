@@ -1,8 +1,9 @@
 var api = require('./request');
 var cheerio = require('cheerio');
 
-/* Fetchers */
+// Fetchers
 var Character = require('./fetcher/character');
+var World = require('./fetcher/world');
 
 var TibiaCrawler = {
 
@@ -12,6 +13,15 @@ var TibiaCrawler = {
     return api.request('get', path, {}, function(err, res, body){
       callback(
         new Character(cheerio.load(body))
+      );
+    });
+  },
+
+  world: function(name, callback){
+    var path = 'community/?subtopic=worlds&world=' + name;
+    return api.request('get', path, {}, function(err, res, body){
+      callback(
+        new World(cheerio.load(body))
       );
     });
   }

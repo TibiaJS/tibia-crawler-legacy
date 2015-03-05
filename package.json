@@ -1,6 +1,6 @@
 {
   "name": "tibia-crawler",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A tibia crawler module for Node.",
   "homepage": "https://github.com/TibiaJS/tibia-crawler",
   "repository": "TibiaJS/tibia-crawler",
