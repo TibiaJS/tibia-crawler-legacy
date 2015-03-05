@@ -1,4 +1,4 @@
-#  [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
+#  [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Code Climate][climate-image]][climate-url] [![Test Coverage][coverage-image]][coverage-url] [![Dependency Status][daviddm-image]][daviddm-url]
 
 > A tibia crawler module for Node.
 
@@ -39,3 +39,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 [travis-url]: https://travis-ci.org/TibiaJS/tibia-crawler
 [daviddm-image]: https://david-dm.org/TibiaJS/tibia-crawler.svg?theme=shields.io
 [daviddm-url]: https://david-dm.org/TibiaJS/tibia-crawler
+[climate-url]: https://codeclimate.com/github/TibiaJS/tibia-crawler
+[climate-image]: https://codeclimate.com/github/TibiaJS/tibia-crawler/badges/gpa.svg
+[coverage-url]: https://codeclimate.com/github/TibiaJS/tibia-crawler
+[coverage-image]: https://codeclimate.com/github/TibiaJS/tibia-crawler/badges/coverage.svg
