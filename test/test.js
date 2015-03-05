@@ -3,7 +3,7 @@ var assert = require('assert');
 var crawler = require('../');
 
 describe('tibia-crawler', function () {
-  it('character test', function (done) {
+  it('parse character test', function (done) {
     process.nextTick(function () {
       crawler.character('Serphir', function(player){
 
