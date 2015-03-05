@@ -1,32 +1,33 @@
 'use strict';
 var request = require('request');
-var url = "https://secure.tibia.com/";
+var url = 'https://secure.tibia.com/';
 
 var Request = function(method, path, data, sess, callback) {
-  var options = {
-    url: url + path,
-    form: data,
-    method: method.toUpperCase(),
-    headers: {
-      "Content-Type": 'application/x-www-form-urlencoded'
+    var options = {
+        url: url + path,
+        form: data,
+        method: method.toUpperCase(),
+        headers: {
+            'User-Agent': 'request',
+            'Content-Type': 'application/x-www-form-urlencoded'
+        }
+    };
+
+    if (sess) {
+        options.jar = request.jar();
     }
-  };
 
-  if (sess) {
-    options.jar = request.jar();
-  }
-
-  return request(options, callback);
+    return request(options, callback);
 };
 
 module.exports = {
 
-  request: function(method, path, data, callback) {
-    return new Request(method, path, data, false, callback);
-  },
+    request: function(method, path, data, callback) {
+        return new Request(method, path, data, false, callback);
+    },
 
-  requestSess: function(method, path, data, callback) {
-    return new Request(method, path, data, true, callback);
-  }
+    requestSess: function(method, path, data, callback) {
+        return new Request(method, path, data, true, callback);
+    }
 
 };

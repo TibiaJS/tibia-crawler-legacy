@@ -1,5 +1,6 @@
 {
   "boss": true,
+  "camelcase": true,
   "curly": true,
   "eqeqeq": true,
   "eqnull": true,
@@ -9,6 +10,7 @@
   "newcap": true,
   "noarg": true,
   "node": true,
+  "quotmark": true,
   "sub": true,
   "undef": true,
   "unused": true
