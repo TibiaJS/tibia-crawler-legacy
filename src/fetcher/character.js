@@ -1,3 +1,6 @@
+'use strict';
+var util = require('../util');
+
 /**
   * Character fetcher
   *
@@ -5,7 +8,7 @@
   * @return this
   */
 
-function Character($){
+function Character($) {
 
   this.character = {};
   this.achievements = [];
@@ -15,36 +18,44 @@ function Character($){
 
   var self = this;
 
-  var getWrapper = function(key){
+  var getWrapper = function(key) {
     return $('b:contains("' + key + '")').closest('table');
   };
 
   getWrapper('Character Information')
   .find('tr:nth-child(n+2)')
-  .each(function(){
-    var index = $(this).find('td:nth-child(1)').text()
-      .replace(':', '')
-      .replace(' ', '_')
-      .replace(String.fromCharCode(160), '_') // &nbsp;
-      .toLowerCase();
+  .each(function() {
+    var key = util.camelCase($(this).find('td:nth-child(1)').text());
     var value = $(this).find('td:nth-child(2)').text().trim();
-    self.character[index] = value;
+    switch(key) {
+
+      case 'achievementPoints':
+      case 'level':
+        value = parseInt(value);
+      break;
+
+    }
+
+    self.character[key] = value;
   });
 
   getWrapper('Account Achievements')
   .find('tr:nth-child(n+2)')
-  .each(function(){
+  .each(function() {
     var value = {
       grade: $(this).find('td:nth-child(1) img').length,
       name: $(this).find('td:nth-child(2)').text().trim(),
       secret: $(this).find('td:nth-child(2) img').length === 1
     };
-    self.achievements.push(value);
+
+    if(value.name !== '') {
+      self.achievements.push(value);
+    }
   });
 
   getWrapper('Character Deaths')
   .find('tr:nth-child(n+2)')
-  .each(function(){
+  .each(function() {
     var value = {
       date: $(this).find('td:nth-child(1)').text()
             .replace(String.fromCharCode(160), ' ').replace('CET', '').trim(),
@@ -58,19 +69,16 @@ function Character($){
 
   getWrapper('Account Information')
   .find('tr:nth-child(n+2)')
-  .each(function(){
-    var index = $(this).find('td:nth-child(1)').text()
-      .replace(':', '')
-      .replace(' ', '_')
-      .replace(String.fromCharCode(160), '_') // &nbsp;
-      .toLowerCase();
+  .each(function() {
+    var index = util.camelCase($(this).find('td:nth-child(1)').text());
     var value = $(this).find('td:nth-child(2)').text().trim();
+
     self.account[index] = value;
   });
 
   getWrapper('Characters')
   .find('tr:nth-child(n+3)')
-  .each(function(){
+  .each(function() {
     var value = {
       name: $(this).find('td:nth-child(1)').find('input[type=hidden]').val(),
       world: $(this).find('td:nth-child(2)').text(),

@@ -1,7 +1,8 @@
+'use strict';
 var request = require('request');
 var url = "https://secure.tibia.com/";
 
-var Request = function(method, path, data, sess, callback){
+var Request = function(method, path, data, sess, callback) {
   var options = {
     url: url + path,
     form: data,
@@ -11,7 +12,7 @@ var Request = function(method, path, data, sess, callback){
     }
   };
 
-  if(sess) {
+  if (sess) {
     options.jar = request.jar();
   }
 
