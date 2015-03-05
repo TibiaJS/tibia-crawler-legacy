@@ -25,17 +25,17 @@ function World($){
       .toLowerCase();
     var value = $(this).find('td:nth-child(2)').text().trim();
 
-    if(key == 'players_online'){
+    if(key === 'players_online'){
       value = parseInt(value);
     }
 
-    if(key == 'world_quest_titles'){
+    if(key === 'world_quest_titles'){
       value = value.split(', ');
     }
 
     self.world[key] = value;
   });
-  this.world['online'] = this.world['status'] == 'Online';
+  this.world['online'] = this.world['status'] === 'Online';
 
 
   getWrapper('Players Online')
