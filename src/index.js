@@ -3,7 +3,6 @@ var cheerio = require('cheerio');
 
 // Fetchers
 var Character = require('./fetcher/character');
-var Spell = require('./fetcher/spell');
 var Spells = require('./fetcher/spells');
 var World = require('./fetcher/world');
 var Worlds = require('./fetcher/worlds');
@@ -20,18 +19,6 @@ var TibiaCrawler = {
             } else {
                 var player = new Character($);
                 cb(player);
-            }
-        });
-    },
-
-    spell: function(name, cb) {
-        var path = 'library/?subtopic=spells&spell=' + name.toLowerCase().replace(/\W/g, '');
-        return api.request('get', path, {}, function(err, res, body) {
-            var $ = cheerio.load(body);
-            if ($('h2:contains("' + name + '")').length === 0) {
-                cb();
-            } else {
-                cb(new Spell($));
             }
         });
     },
