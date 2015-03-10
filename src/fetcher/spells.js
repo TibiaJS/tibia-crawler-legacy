@@ -9,7 +9,7 @@ function Spells($) {
         return $('.BoxContent table').first();
     };
 
-    getWrapper().find('tr').each(function(index, item) {
+    getWrapper().find('tr:nth-child(n+2)').each(function(index, item) {
         item = $(item).find('td');
 
         self.spells.push({
