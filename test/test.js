@@ -4,7 +4,7 @@ var crawler = require('../');
 
 describe('tibia-crawler', function() {
 
-    this.timeout(6000); // 4sec for timeout, but world page is too long)
+    //this.timeout(6000); // 4sec for timeout, but world page is too long)
     it('parse exists character test', function(done) {
         process.nextTick(function() {
             crawler.character('Serphir', function(player) {
@@ -48,7 +48,7 @@ describe('tibia-crawler', function() {
 
 
     it('parse non-exists world test', function(done) {
-        this.timeout(4000); // 4sec for timeout, but world page is too long)
+        //this.timeout(4000); // 4sec for timeout, but world page is too long)
         process.nextTick(function() {
             crawler.world('Luminerx', function(world) {
 
@@ -61,11 +61,24 @@ describe('tibia-crawler', function() {
 
 
     it('parse world list test', function(done) {
-        this.timeout(4000); // 4sec for timeout, but world page is too long)
+        //this.timeout(4000); // 4sec for timeout, but world page is too long)
         process.nextTick(function() {
             crawler.worlds(function(worlds) {
 
                 assert.equal(worlds.worlds.length, 61);
+
+                done();
+            });
+        });
+    });
+
+
+    it('parse spell list test', function(done) {
+        //this.timeout(4000);
+        process.nextTick(function() {
+            crawler.spells(function(spells) {
+
+                assert.equal(spells.spells.length, 133);
 
                 done();
             });
