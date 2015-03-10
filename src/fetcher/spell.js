@@ -1,6 +1,17 @@
 'use strict';
 
+var util = require('../util');
+
+/**
+ * Spell fetcher
+ *
+ * @param  {cheerio} $
+ * @return this
+ */
+
 function Spell($) {
+
+    this.spell = {};
 
     var self = this;
 
