@@ -90,6 +90,7 @@ describe('tibia-crawler', function() {
         this.timeout(4000);
         process.nextTick(function() {
             crawler.spell('Rage of the Skies', function(spell) {
+                spell = spell.spell;
 
                 assert.equal(spell.name, 'Rage of the Skies');
                 assert.equal(spell.formula, 'exevo gran mas vis');
