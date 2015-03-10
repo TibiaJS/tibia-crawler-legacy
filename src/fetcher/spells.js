@@ -22,8 +22,6 @@ function Spells($) {
             premium: $(item[6]).text() === 'yes'
         });
     });
-
-    this.spells.shift();
 }
 
 module.exports = Spells;
