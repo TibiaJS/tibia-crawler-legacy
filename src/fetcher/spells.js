@@ -12,8 +12,15 @@ function Spells($) {
     getWrapper().find('tr:nth-child(n+2)').each(function(index, item) {
         item = $(item).find('td');
 
+
+        var match = $(item[0]).text().match(/(.*) \((.*)\)/),
+            name = match[1],
+            words = match[2];
+
+
         self.spells.push({
-            name: $(item[0]).text(),
+            name: name,
+            words: words,
             group: $(item[1]).text(),
             type: $(item[2]).text(),
             minLevel: parseInt($(item[3]).text()),
