@@ -19,7 +19,9 @@ function Spell($) {
         return $('.BoxContent table');
     };
 
-    $(getWrapper()[1]).find('tr:nth-child(n+2)').each(function() {
+    var tables = getWrapper();
+
+    tables.eq(1).find('tr:nth-child(n+2)').each(function() {
         var key = util.camelCase($(this).find('td:nth-child(1)').text());
         var value = $(this).find('td:nth-child(2)').text().trim();
 
@@ -55,7 +57,7 @@ function Spell($) {
         if (self.spell.type === 'rune') {
             self.rune = {};
 
-            $(getWrapper()[2]).find('tr:nth-child(n+2)').each(function() {
+            tables.eq(2).find('tr:nth-child(n+2)').each(function() {
                 var key = util.camelCase($(this).find('td:nth-child(1)').text());
                 var value = $(this).find('td:nth-child(2)').text().trim();
 
