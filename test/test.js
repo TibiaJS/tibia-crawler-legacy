@@ -93,7 +93,7 @@ describe('tibia-crawler', function() {
 
                 assert.equal(spell.name, 'Rage of the Skies');
                 assert.equal(spell.formula, 'exevo gran mas vis');
-                assert.equal(spell.vocation, ['Sorcerer']);
+                assert.deepEqual(spell.vocation, ['Sorcerer']);
                 assert.equal(spell.group, 'attack');
                 assert.equal(spell.type, 'instant');
                 assert.equal(spell.damageType, 'energy');
@@ -102,7 +102,7 @@ describe('tibia-crawler', function() {
                 assert.equal(spell.minLevel, 55);
                 assert.equal(spell.mana, 600);
                 assert.equal(spell.price, 6000);
-                assert.equal(spell.city, ['Edron']);
+                assert.deepEqual(spell.city, ['Edron']);
                 assert.equal(spell.premium, true);
 
                 done();
