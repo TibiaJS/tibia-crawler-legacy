@@ -72,4 +72,17 @@ describe('tibia-crawler', function() {
         });
     });
 
+
+    it('parse spell list test', function(done) {
+        this.timeout(4000);
+        process.nextTick(function() {
+            crawler.spells(function(spells) {
+
+                assert.equal(spells.spells.length, 133);
+
+                done();
+            });
+        });
+    });
+
 });
