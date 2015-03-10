@@ -41,6 +41,8 @@ function Spell($) {
             case 'expLvl':
                 key = 'minLevel';
             /* falls through */
+            case 'soulPoints':
+            case 'amount':
             case 'mana':
             case 'price':
                 value = parseInt(value);
@@ -48,6 +50,10 @@ function Spell($) {
             case 'premium':
                 value = value === 'yes';
                 break;
+        }
+
+        if (self.spell.type === 'rune') {
+            // TODO: parse rune data
         }
 
         self.spell[key] = value;
