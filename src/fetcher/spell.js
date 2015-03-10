@@ -35,11 +35,15 @@ function Spell($) {
                 break;
             case 'cooldown':
                 var match = value.match(/(\d+)/g);
-                value = match[0];
-                self.spell.groupCooldown = match[1];
+                value = parseInt(match[0]);
+                self.spell.groupCooldown = parseInt(match[1]);
                 break;
             case 'expLvl':
                 key = 'minLevel';
+            /* falls through */
+            case 'mana':
+            case 'price':
+                value = parseInt(value);
                 break;
             case 'premium':
                 value = value === 'yes';
