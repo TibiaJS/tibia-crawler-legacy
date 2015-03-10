@@ -112,6 +112,28 @@ describe('tibia-crawler', function() {
     });
 
 
+    it('parse existing rune test', function(done) {
+        this.timeout(4000);
+        process.nextTick(function() {
+            crawler.spell('Great Fireball Rune', function(spell) {
+                var rune = spell.rune;
+                spell = spell.spell;
+
+                assert.equal(spell.soulPoints, 3);
+                assert.equal(spell.amount, 4);
+                assert.equal(rune.name, 'Great Fireball Rune');
+                assert.deepEqual(rune.vocation, ['Druid', 'Knight', 'Paladin', 'Sorcerer']);
+                assert.equal(rune.group, 'attack');
+                assert.equal(rune.damageType, 'fire');
+                assert.equal(rune.minLevel, 30);
+                assert.equal(rune.magicLevel, 4);
+
+                done();
+            });
+        });
+    });
+
+
     it('parse non-existing spell test', function(done) {
         this.timeout(4000);
         process.nextTick(function() {
