@@ -53,7 +53,32 @@ function Spell($) {
         }
 
         if (self.spell.type === 'rune') {
-            // TODO: parse rune data
+            self.rune = {};
+
+            $(getWrapper()[2]).find('tr:nth-child(n+2)').each(function() {
+                var key = util.camelCase($(this).find('td:nth-child(1)').text());
+                var value = $(this).find('td:nth-child(2)').text().trim();
+
+                switch (key) {
+                    case 'vocation':
+                        value = value.split(', ');
+                        break;
+                    case 'group':
+                    case 'damageType':
+                        value = value.toLowerCase();
+                        break;
+                    case 'expLvl':
+                        key = 'minLevel';
+                        value = parseInt(value);
+                        break;
+                    case 'magLvl':
+                        key = 'magicLevel';
+                        value = parseInt(value);
+                        break;
+                }
+
+                self.rune[key] = value;
+            });
         }
 
         self.spell[key] = value;
