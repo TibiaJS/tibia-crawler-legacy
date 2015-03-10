@@ -3,6 +3,7 @@ var cheerio = require('cheerio');
 
 // Fetchers
 var Character = require('./fetcher/character');
+var Spells = require('./fetcher/spells');
 var World = require('./fetcher/world');
 var Worlds = require('./fetcher/worlds');
 
@@ -19,6 +20,13 @@ var TibiaCrawler = {
                 var player = new Character($);
                 cb(player);
             }
+        });
+    },
+
+    spells: function(cb) {
+        var path = 'library/?subtopic=spells';
+        return api.request('get', path, {}, function(err, res, body) {
+            cb(new Spells(cheerio.load(body)));
         });
     },
 
