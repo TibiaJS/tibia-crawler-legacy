@@ -85,4 +85,65 @@ describe('tibia-crawler', function() {
         });
     });
 
+
+    it('parse existing spell test', function(done) {
+        this.timeout(4000);
+        process.nextTick(function() {
+            crawler.spell('Rage of the Skies', function(spell) {
+                spell = spell.spell;
+
+                assert.equal(spell.name, 'Rage of the Skies');
+                assert.equal(spell.formula, 'exevo gran mas vis');
+                assert.deepEqual(spell.vocation, ['Sorcerer']);
+                assert.equal(spell.group, 'attack');
+                assert.equal(spell.type, 'instant');
+                assert.equal(spell.damageType, 'energy');
+                assert.equal(spell.cooldown, 40);
+                assert.equal(spell.groupCooldown, 4);
+                assert.equal(spell.minLevel, 55);
+                assert.equal(spell.mana, 600);
+                assert.equal(spell.price, 6000);
+                assert.deepEqual(spell.city, ['Edron']);
+                assert.equal(spell.premium, true);
+
+                done();
+            });
+        });
+    });
+
+
+    it('parse existing rune test', function(done) {
+        this.timeout(4000);
+        process.nextTick(function() {
+            crawler.spell('Great Fireball Rune', function(spell) {
+                var rune = spell.rune;
+                spell = spell.spell;
+
+                assert.equal(spell.soulPoints, 3);
+                assert.equal(spell.amount, 4);
+                assert.equal(rune.name, 'Great Fireball Rune');
+                assert.deepEqual(rune.vocation, ['Druid', 'Knight', 'Paladin', 'Sorcerer']);
+                assert.equal(rune.group, 'attack');
+                assert.equal(rune.damageType, 'fire');
+                assert.equal(rune.minLevel, 30);
+                assert.equal(rune.magicLevel, 4);
+
+                done();
+            });
+        });
+    });
+
+
+    it('parse non-existing spell test', function(done) {
+        this.timeout(4000);
+        process.nextTick(function() {
+            crawler.spell('Rage of the Skiesx', function(spell) {
+
+                assert.equal(spell, undefined);
+
+                done();
+            });
+        });
+    });
+
 });
