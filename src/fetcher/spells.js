@@ -24,8 +24,8 @@ function Spells($) {
             group: $(item[1]).text(),
             type: $(item[2]).text(),
             minLevel: parseInt($(item[3]).text()),
-            mana: parseInt($(item[4]).text()),
-            price: $(item[5]).text() === 'free' ? 0 : parseInt($(item[5]).text()),
+            mana: parseInt($(item[4]).text()) || 0,
+            price: parseInt($(item[5]).text()) || 0,
             premium: $(item[6]).text() === 'yes'
         });
     });
