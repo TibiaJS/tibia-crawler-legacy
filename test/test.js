@@ -73,7 +73,6 @@ describe('tibia-crawler', function() {
 
 
     it('parse spell list test', function(done) {
-        this.timeout(4000);
         process.nextTick(function() {
             crawler.spells(function(spells) {
 
@@ -96,5 +95,20 @@ describe('tibia-crawler', function() {
         });
     });
 
+
+    it('parse wrong category at highscores test', function(done) {
+        var fn = function() {
+          try {
+            crawler.highscores('Pacera', 'zoeira', 0, function() {});
+          } catch(e) {
+            throw e;
+          }
+        };
+
+        process.nextTick(function() {
+            assert.throws(function() { fn(); }, /Unknown zoeira category/);
+            done();
+        });
+    });
 
 });
