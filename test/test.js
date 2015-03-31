@@ -22,6 +22,22 @@ describe('tibia-crawler', function() {
         });
     });
 
+    it('parse epic character test', function(done) {
+        process.nextTick(function() {
+            crawler.character('Moonzinn', function(player) {
+                assert.equal(player.character.name, 'Moonzinn');
+                assert.equal(player.character.vocation, 'Elite Knight');
+                assert.equal(player.character.world, 'Secura');
+
+                assert.equal(player.deaths.length, 1);
+                assert.equal(player.characters.length, 2);
+                assert.equal(player.achievements.length, 4);
+
+                done();
+            });
+        });
+    });
+
     it('parse non-exists character test', function(done) {
         process.nextTick(function() {
             crawler.character('Sexrphir', function(player) {
