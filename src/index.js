@@ -2,11 +2,11 @@ var api = require('./request');
 var cheerio = require('cheerio');
 
 // Fetchers
-var Character = require('./fetcher/character');
-var Spells = require('./fetcher/spells');
-var Highscore = require('./fetcher/highscore');
-var World = require('./fetcher/world');
-var Worlds = require('./fetcher/worlds');
+var Character = require('./fetchers/character');
+var Spells = require('./fetchers/spells');
+var Highscore = require('./fetchers/highscore');
+var World = require('./fetchers/world');
+var Worlds = require('./fetchers/worlds');
 
 var TibiaCrawler = {
 
