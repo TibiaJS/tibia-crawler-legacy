@@ -4,6 +4,7 @@ var cheerio = require('cheerio');
 // Fetchers
 var Character = require('./fetcher/character');
 var Spells = require('./fetcher/spells');
+var Highscore = require('./fetcher/highscore');
 var World = require('./fetcher/world');
 var Worlds = require('./fetcher/worlds');
 
@@ -27,6 +28,31 @@ var TibiaCrawler = {
         var path = 'library/?subtopic=spells';
         return api.request('get', path, {}, function(err, res, body) {
             cb(new Spells(cheerio.load(body)));
+        });
+    },
+
+    highscores: function(world, category, page, cb) {
+        var categories = ['experience', 'magic', 'shielding', 'distance', 'sword', 'club', 'axe', 'fist', 'fishing', 'achievements', 'loyalty'];
+
+        category = category || 'experience';
+        if(categories.indexOf(category) === -1) {
+          throw new Error('Unknown ' + category + ' category. Avaliables: ' + categories.join(', ') + '.');
+        }
+
+        this.world(world, function(exists) {
+
+          if(exists) {
+            page = page || 0;
+
+            var path = 'community/?subtopic=highscores&world=' + world + '&list=' + category + '&page=' + parseInt(page);
+            return api.request('get', path, {}, function(err, res, body) {
+                var $ = cheerio.load(body);
+                cb(new Highscore($, category));
+            });
+          } else {
+            throw new Error('Unknown world name ' + world + '.');
+          }
+
         });
     },
 
