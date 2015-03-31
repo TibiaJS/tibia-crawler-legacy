@@ -13,9 +13,9 @@ var Request = function(method, path, data, sess, callback) {
         }
     };
 
-    if (sess) {
+    /*if (sess) {
         options.jar = request.jar();
-    }
+    }*/
 
     return request(options, callback);
 };
@@ -24,10 +24,10 @@ module.exports = {
 
     request: function(method, path, data, callback) {
         return new Request(method, path, data, false, callback);
-    },
-
-    requestSess: function(method, path, data, callback) {
-        return new Request(method, path, data, true, callback);
     }
+
+    /*requestSess: function(method, path, data, callback) {
+        return new Request(method, path, data, true, callback);
+    }*/
 
 };
