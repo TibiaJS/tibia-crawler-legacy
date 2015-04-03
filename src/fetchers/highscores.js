@@ -28,7 +28,7 @@ function Highscores($) {
     self.rank.push(rank);
   });
 
-  return this;
+  return this.rank;
 }
 
 module.exports = Highscores;
