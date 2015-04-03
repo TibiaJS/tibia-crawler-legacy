@@ -1,6 +1,6 @@
 'use strict';
 
-function Highscore($) {
+function Highscores($) {
 
   this.rank = [];
 
@@ -31,4 +31,4 @@ function Highscore($) {
   return this;
 }
 
-module.exports = Highscore;
+module.exports = Highscores;
