@@ -30,7 +30,7 @@ function Spells($) {
         });
     });
 
-    return this;
+    return this.spells;
 }
 
 module.exports = Spells;
