@@ -4,7 +4,7 @@ var cheerio = require('cheerio');
 // Fetchers
 var Character = require('./fetchers/character');
 var Spells = require('./fetchers/spells');
-var Highscore = require('./fetchers/highscore');
+var Highscores = require('./fetchers/highscores');
 var World = require('./fetchers/world');
 var Worlds = require('./fetchers/worlds');
 
@@ -47,7 +47,7 @@ var TibiaCrawler = {
             var path = 'community/?subtopic=highscores&world=' + world + '&list=' + category + '&page=' + parseInt(page);
             return api.request('get', path, {}, function(err, res, body) {
                 var $ = cheerio.load(body);
-                cb(new Highscore($, category));
+                cb(new Highscores($, category));
             });
           } else {
             throw new Error('Unknown world name ' + world + '.');
