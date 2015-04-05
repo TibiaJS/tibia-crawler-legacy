@@ -2,7 +2,7 @@
 
 function Spells($) {
 
-    this.spells = [];
+    this.data = [];
     var self = this;
 
     var getWrapper = function() {
@@ -18,7 +18,7 @@ function Spells($) {
             words = match[2];
 
 
-        self.spells.push({
+        self.data.push({
             name: name,
             words: words,
             group: $(item[1]).text(),
@@ -30,7 +30,7 @@ function Spells($) {
         });
     });
 
-    return this.spells;
+    return this.data;
 }
 
 module.exports = Spells;
