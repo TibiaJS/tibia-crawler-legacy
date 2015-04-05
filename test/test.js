@@ -10,6 +10,28 @@ describe('tibia-crawler', function() {
         process.nextTick(function() {
             crawler.character('Serphir', function(player) {
                 assert.equal(player.character.name, 'Serphir');
+                assert.equal(player.character.level, 36);
+                assert.equal(player.character.vocation, 'Knight');
+                assert.equal(player.character.world, 'Luminera');
+
+                assert.equal(player.deaths.length, 0);
+                assert.equal(player.characters.length, 0);
+
+                done();
+            });
+        });
+    });
+
+    it('parse epic character test', function(done) {
+        process.nextTick(function() {
+            crawler.character('Moonzinn', function(player) {
+                assert.equal(player.character.name, 'Moonzinn');
+                assert.equal(player.character.vocation, 'Elite Knight');
+                assert.equal(player.character.world, 'Secura');
+
+                assert.equal(player.deaths.length, 1);
+                assert.equal(player.characters.length, 2);
+                assert.equal(player.achievements.length, 4);
 
                 done();
             });
@@ -47,6 +69,18 @@ describe('tibia-crawler', function() {
             crawler.world('Luminerx', function(world) {
 
                 assert.equal(world, undefined);
+
+                done();
+            });
+        });
+    });
+
+
+    it('parse world list test', function(done) {
+        process.nextTick(function() {
+            crawler.worlds(function(worlds) {
+
+                assert.equal(worlds.worlds.length, 61);
 
                 done();
             });

@@ -11,10 +11,8 @@ var util = require('../util');
 
 function World($) {
 
-  this.data = {
-    world: {},
-    online: []
-  };
+  this.world = {};
+  this.online = [];
 
   var self = this;
 
@@ -29,7 +27,7 @@ function World($) {
     var value = $(this).find('td:nth-child(2)').text().trim();
 
     if(key === 'status') {
-       self.data.world['online'] = value === 'Online';
+       self.world['online'] = value === 'Online';
        return;
     }
 
@@ -41,7 +39,7 @@ function World($) {
       value = value.split(', ');
     }
 
-    self.data.world[key] = value;
+    self.world[key] = value;
   });
 
   getWrapper('Players Online')
@@ -52,10 +50,10 @@ function World($) {
       level: parseInt($(this).find('td:nth-child(2)').text()),
       vocation: $(this).find('td:nth-child(3)').text().trim()
     };
-    self.data.online.push(value);
+    self.online.push(value);
   });
 
-  return this.data;
+  return this;
 }
 
 module.exports = World;

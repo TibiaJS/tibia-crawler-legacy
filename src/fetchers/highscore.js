@@ -1,8 +1,8 @@
 'use strict';
 
-function Highscores($) {
+function Highscore($) {
 
-  this.data = [];
+  this.rank = [];
 
   var self = this;
 
@@ -15,21 +15,20 @@ function Highscores($) {
 
   $(bodyData).each(function(index, item) {
     if(index < 2) { return; }
-    var highscores = {};
+    var rank = {};
     $(item).find('td').each(function(columnIndex, columnValue) {
       var headerName = headers[columnIndex];
       columnValue = $(columnValue).text();
       if(['rank', 'level', 'points'].indexOf(headerName) !== -1) {
         columnValue = parseInt(columnValue);
       }
-      highscores[headerName] = columnValue;
+      rank[headerName] = columnValue;
     });
 
-    self.data.push(highscores);
+    self.rank.push(rank);
   });
 
-  return this.data;
-  
+  return this;
 }
 
-module.exports = Highscores;
+module.exports = Highscore;
