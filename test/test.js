@@ -6,7 +6,7 @@ describe('tibia-crawler', function() {
 
     this.timeout(6000); // 4sec for timeout, but world page is too long)
 
-  /*  it('parse exists character test', function(done) {
+    it('parse exists character test', function(done) {
         process.nextTick(function() {
             crawler.character('Serphir', function(player) {
                 assert.equal(player.character.name, 'Serphir');
@@ -58,7 +58,7 @@ describe('tibia-crawler', function() {
         process.nextTick(function() {
             crawler.spells(function(spells) {
 
-                assert.equal(spells.spells.length, 133);
+                assert.equal(spells.length, 133);
 
                 done();
             });
@@ -69,8 +69,7 @@ describe('tibia-crawler', function() {
     it('parse highscores test', function(done) {
         process.nextTick(function() {
             crawler.highscores('Pacera', 'experience', 0, function(highscore) {
-
-                assert.equal(highscore.rank.length, 25);
+                assert.equal(highscore.length, 25);
 
                 done();
             });
@@ -91,6 +90,6 @@ describe('tibia-crawler', function() {
             assert.throws(function() { fn(); }, /Unknown zoeira category/);
             done();
         });
-    }); */
+    });
 
 });
