@@ -14,7 +14,7 @@ function World($) {
   this.data = {
     world: {},
     online: []
-  }
+  };
 
   var self = this;
 

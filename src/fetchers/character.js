@@ -16,7 +16,7 @@ function Character($) {
     deaths: [],
     account: {},
     characters: []
-  }
+  };
 
   var self = this;
 
