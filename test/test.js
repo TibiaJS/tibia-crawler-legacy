@@ -6,32 +6,10 @@ describe('tibia-crawler', function() {
 
     this.timeout(6000); // 4sec for timeout, but world page is too long)
 
-    it('parse exists character test', function(done) {
+  /*  it('parse exists character test', function(done) {
         process.nextTick(function() {
             crawler.character('Serphir', function(player) {
                 assert.equal(player.character.name, 'Serphir');
-                assert.equal(player.character.level, 36);
-                assert.equal(player.character.vocation, 'Knight');
-                assert.equal(player.character.world, 'Luminera');
-
-                assert.equal(player.deaths.length, 0);
-                assert.equal(player.characters.length, 0);
-
-                done();
-            });
-        });
-    });
-
-    it('parse epic character test', function(done) {
-        process.nextTick(function() {
-            crawler.character('Moonzinn', function(player) {
-                assert.equal(player.character.name, 'Moonzinn');
-                assert.equal(player.character.vocation, 'Elite Knight');
-                assert.equal(player.character.world, 'Secura');
-
-                assert.equal(player.deaths.length, 1);
-                assert.equal(player.characters.length, 2);
-                assert.equal(player.achievements.length, 4);
 
                 done();
             });
@@ -76,18 +54,6 @@ describe('tibia-crawler', function() {
     });
 
 
-    it('parse world list test', function(done) {
-        process.nextTick(function() {
-            crawler.worlds(function(worlds) {
-
-                assert.equal(worlds.worlds.length, 61);
-
-                done();
-            });
-        });
-    });
-
-
     it('parse spell list test', function(done) {
         process.nextTick(function() {
             crawler.spells(function(spells) {
@@ -125,6 +91,6 @@ describe('tibia-crawler', function() {
             assert.throws(function() { fn(); }, /Unknown zoeira category/);
             done();
         });
-    });
+    }); */
 
 });
