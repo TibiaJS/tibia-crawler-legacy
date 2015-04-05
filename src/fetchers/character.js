@@ -10,11 +10,13 @@ var util = require('../util');
 
 function Character($) {
 
-  this.character = {};
-  this.achievements = [];
-  this.deaths = [];
-  this.account = {};
-  this.characters = [];
+  this.data = {
+    character: {},
+    achievements: [],
+    deaths: [],
+    account: {},
+    characters: []
+  }
 
   var self = this;
 
@@ -36,7 +38,7 @@ function Character($) {
 
     }
 
-    self.character[key] = value;
+    self.data.character[key] = value;
   });
 
   getWrapper('Account Achievements')
@@ -49,14 +51,14 @@ function Character($) {
     };
 
     if(value.name !== '') {
-      self.achievements.push(value);
+      self.data.achievements.push(value);
     }
   });
 
   getWrapper('Character Deaths')
   .find('tr:nth-child(n+2)')
   .each(function() {
-    self.deaths.push({
+    self.data.deaths.push({
       date: $(this).find('td:nth-child(1)').text()
             .replace(String.fromCharCode(160), ' ').replace('CET', '').trim(),
       level: parseInt($(this).find('td:nth-child(2)').text().match(/[0-9]+/g)[0]),
@@ -72,20 +74,20 @@ function Character($) {
     var index = util.camelCase($(this).find('td:nth-child(1)').text());
     var value = $(this).find('td:nth-child(2)').text().trim();
 
-    self.account[index] = value;
+    self.data.account[index] = value;
   });
 
   getWrapper('Characters')
   .find('tr:nth-child(n+3)')
   .each(function() {
-    self.characters.push({
+    self.data.characters.push({
       name: $(this).find('td:nth-child(1)').find('input[type=hidden]').val(),
       world: $(this).find('td:nth-child(2)').text(),
       online: $(this).find('td:nth-child(3)').text() === 'online'
     });
   });
 
-  return this;
+  return this.data;
 }
 
 module.exports = Character;

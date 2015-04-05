@@ -2,7 +2,8 @@
 
 function Worlds($) {
 
-  this.worlds = [];
+  this.data = [];
+
   var self = this;
 
   var getWrapper = function() {
@@ -12,7 +13,7 @@ function Worlds($) {
   $(getWrapper()[1]).find('tr').each(function(index, item) {
     item = $(item).find('td');
 
-    self.worlds.push({
+    self.data.push({
       name: $(item[0]).text(),
       playersOnline: parseInt($(item[1]).text()),
       location: $(item[2]).text(),
@@ -21,7 +22,7 @@ function Worlds($) {
     });
   });
 
-  this.worlds.shift();
+  return this.data;
 }
 
 module.exports = Worlds;
