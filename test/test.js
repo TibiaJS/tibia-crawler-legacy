@@ -69,8 +69,7 @@ describe('tibia-crawler', function() {
     it('parse highscores test', function(done) {
         process.nextTick(function() {
             crawler.highscores('Pacera', 'experience', 0, function(highscore) {
-
-                assert.equal(highscore.rank.length, 25);
+                assert.equal(highscore.length, 25);
 
                 done();
             });
