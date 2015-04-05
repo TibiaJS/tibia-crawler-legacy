@@ -58,7 +58,7 @@ describe('tibia-crawler', function() {
         process.nextTick(function() {
             crawler.spells(function(spells) {
 
-                assert.equal(spells.spells.length, 133);
+                assert.equal(spells.length, 133);
 
                 done();
             });
