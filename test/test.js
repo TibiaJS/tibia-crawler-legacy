@@ -4,92 +4,117 @@ var crawler = require('../');
 
 describe('tibia-crawler', function() {
 
-    this.timeout(6000); // 4sec for timeout, but world page is too long)
+		this.timeout(6000); // 4sec for timeout, but world page is too long)
 
-    it('parse exists character test', function(done) {
-        process.nextTick(function() {
-            crawler.character('Serphir', function(player) {
-                assert.equal(player.character.name, 'Serphir');
+		it('parse exists character test', function(done) {
+				process.nextTick(function() {
+						crawler.character('Serphir', function(player) {
+								assert.equal(player.character.name, 'Serphir');
 
-                done();
-            });
-        });
-    });
+								done();
+						});
+				});
+		});
 
-    it('parse non-exists character test', function(done) {
-        process.nextTick(function() {
-            crawler.character('Sexrphir', function(player) {
+		it('parse epic character test', function(done) {
+			process.nextTick(function() {
+				crawler.character('Moonzinn', function(player) {
+					assert.equal(player.character.name, 'Moonzinn');
+					assert.equal(player.character.vocation, 'Elite Knight');
+					assert.equal(player.character.world, 'Secura');
 
-                assert.equal(player, undefined);
+					assert.equal(player.deaths.length, 1);
+					assert.equal(player.characters.length, 2);
+					assert.equal(player.achievements.length, 4);
 
-                done();
-            });
-        });
-    });
+					done();
+				});
+			});
+		});
 
-    it('parse exists world test', function(done) {
-        process.nextTick(function() {
-            crawler.world('Luminera', function(world) {
-                world = world.world;
+		it('parse non-exists character test', function(done) {
+				process.nextTick(function() {
+						crawler.character('Sexrphir', function(player) {
 
-                assert.equal(world.online, true);
-                assert.equal(world.pvpType, 'Optional PvP');
-                assert.equal(world.creationDate, '07/05');
+								assert.equal(player, undefined);
 
-                done();
-            });
-        });
-    });
+								done();
+						});
+				});
+		});
 
+		it('parse exists world test', function(done) {
+				process.nextTick(function() {
+						crawler.world('Luminera', function(world) {
+								world = world.world;
 
-    it('parse non-exists world test', function(done) {
-        process.nextTick(function() {
-            crawler.world('Luminerx', function(world) {
+								assert.equal(world.online, true);
+								assert.equal(world.pvpType, 'Optional PvP');
+								assert.equal(world.creationDate, '07/05');
 
-                assert.equal(world, undefined);
-
-                done();
-            });
-        });
-    });
-
-
-    it('parse spell list test', function(done) {
-        process.nextTick(function() {
-            crawler.spells(function(spells) {
-
-                assert.equal(spells.length, 133);
-
-                done();
-            });
-        });
-    });
+								done();
+						});
+				});
+		});
 
 
-    it('parse highscores test', function(done) {
-        process.nextTick(function() {
-            crawler.highscores('Pacera', 'experience', 0, function(highscore) {
-                assert.equal(highscore.length, 25);
+		it('parse non-exists world test', function(done) {
+				process.nextTick(function() {
+						crawler.world('Luminerx', function(world) {
 
-                done();
-            });
-        });
-    });
+								assert.equal(world, undefined);
+
+								done();
+						});
+				});
+		});
+
+		it('parse worlds test', function(done) {
+				process.nextTick(function() {
+						crawler.worlds(function(data) {
+								assert.equal(data.length, 61);
+
+								done();
+						});
+				});
+		});
+
+		it('parse spell list test', function(done) {
+				process.nextTick(function() {
+						crawler.spells(function(spells) {
+
+								assert.equal(spells.length, 133);
+
+								done();
+						});
+				});
+		});
 
 
-    it('parse wrong category at highscores test', function(done) {
-        var fn = function() {
-          try {
-            crawler.highscores('Pacera', 'zoeira', 0, function() {});
-          } catch(e) {
-            throw e;
-          }
-        };
+		it('parse highscores test', function(done) {
+				process.nextTick(function() {
+						crawler.highscores('Pacera', 'experience', 0, function(highscore) {
+								assert.equal(highscore.length, 25);
 
-        process.nextTick(function() {
-            assert.throws(function() { fn(); }, /Unknown zoeira category/);
-            done();
-        });
-    });
+								done();
+						});
+				});
+		});
+
+
+		it('parse wrong category at highscores test', function(done) {
+				var fn = function() {
+					try {
+						crawler.highscores('Pacera', 'zoeira', 0, function() {});
+					} catch(e) {
+						throw e;
+					}
+				};
+
+				process.nextTick(function() {
+						assert.throws(function() { fn(); }, /Unknown zoeira category/);
+						done();
+				});
+		});
 
 });

@@ -11,15 +11,18 @@ function Worlds($) {
   };
 
   $(getWrapper()[1]).find('tr').each(function(index, item) {
-    item = $(item).find('td');
+  	// Skipping header
+  	if(index > 0) {
+	    item = $(item).find('td');
 
-    self.data.push({
-      name: $(item[0]).text(),
-      playersOnline: parseInt($(item[1]).text()),
-      location: $(item[2]).text(),
-      pvpType: $(item[3]).text(),
-      info: $(item[4]).text()
-    });
+	    self.data.push({
+	      name: $(item[0]).text(),
+	      playersOnline: parseInt($(item[1]).text()),
+	      location: $(item[2]).text(),
+	      pvpType: $(item[3]).text(),
+	      info: $(item[4]).text()
+	    });
+		}
   });
 
   return this.data;
