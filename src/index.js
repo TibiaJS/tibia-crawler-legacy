@@ -7,6 +7,7 @@ var Spells = require('./fetchers/spells');
 var Highscores = require('./fetchers/highscores');
 var World = require('./fetchers/world');
 var Worlds = require('./fetchers/worlds');
+var KillStatistics = require('./fetchers/killstatistics');
 
 var TibiaCrawler = {
 
@@ -39,6 +40,7 @@ var TibiaCrawler = {
           throw new Error('Unknown ' + category + ' category. Avaliables: ' + categories.join(', ') + '.');
         }
 
+        //TODO: Cache this
         this.world(world, function(exists) {
 
           if(exists) {
@@ -72,6 +74,13 @@ var TibiaCrawler = {
         var path = 'community/?subtopic=worlds';
         return api.request('get', path, {}, function(err, res, body) {
             cb(new Worlds(cheerio.load(body)));
+        });
+    },
+
+    killStatistics: function(world, cb){
+        var path = 'community/?subtopic=killstatistics&world=' + world;
+        return api.request('get', path, {}, function(err, res, body) {
+            cb(new KillStatistics(cheerio.load(body)));
         });
     }
 
